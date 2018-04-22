@@ -27,7 +27,7 @@ There are a few ways to communicate with the Arduino to send MIDI Data. You can:
 If you want to configure your Arduino to be a USB MIDI Device, we need to change the firmware on the AVR chip. This chip's job is to convert the USB communication to serial data that the processor (the ATMEGA328 chip on an UNO). To make the computer see it as a MIDI device, we simply put a different firmware on the chip.
 I am using a custom compiled firmware called [mocuLUFA](https://github.com/kuwatay/mocolufa) that allows a dual boot option depending on the presense of a jumper on the ISCP header. One of the drawbacks of changing a firmware on the AVR chip is that you loose the ability to reprogram the 328 chip through the Arduino IDE. This method fixes that problem.
 So how do we do it? 
-1. You will need to install the Atmel FLIP software
+1. You will need to install the [Atmel FLIP software](http://www.microchip.com/developmenttools/productdetails.aspx?partno=flip)
 
 2. Get the "midi_stepper.hex" file from the LUFA directory above. (or make your own custom hex file [HERE](https://moco-lufa-web-client.herokuapp.com/#/)) 
 
