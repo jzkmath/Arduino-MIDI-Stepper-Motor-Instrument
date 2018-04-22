@@ -9,7 +9,7 @@ This is an Arduino Project that uses A4988 stepper drivers with bipolar stepper 
 I used an Arduino CNC Shield to control the stepper motors, so the code is preset for that pinout.
 
 # How to use:
-Make sure you have the MIDI Arduino library installed in your IDE.
+Make sure you have the [MIDI Arduino library](https://github.com/FortySevenEffects/arduino_midi_library) installed in your IDE.
 
 The Arduino code is designed so that it can expand to handle as many stepper motors as you need.
 I have put instructions on how to configure the code in the ino file.
