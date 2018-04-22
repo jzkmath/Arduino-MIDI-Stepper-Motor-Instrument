@@ -53,9 +53,7 @@ void loop() {
   }
   if ((micros() - prevStepMicros >= motorSpeed) && motorSpeed != 0)//stepper motor speed control
   {
-    //Serial.println("test1");
     prevStepMicros += motorSpeed;
-    //stepState = !stepState;
     digitalWrite(stepPin, HIGH);
     digitalWrite(stepPin, LOW);
   }
