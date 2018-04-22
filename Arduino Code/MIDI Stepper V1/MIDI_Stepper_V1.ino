@@ -6,6 +6,7 @@
  * 
  * By Jonathan Kayne / jzkmath
  * April 2018
+ * https://github.com/jzkmath/Arduino-MIDI-Stepper-Motor-Instrument
  * 
  * Takes MIDI data and converts it to stepper music!
  * Since the steppers only need to spin in one direction,
@@ -37,6 +38,7 @@
 unsigned long motorSpeeds[] = {0, 0, 0, 0, 0}; //holds the speeds of the motors. 
 unsigned long prevStepMicros[] = {0, 0, 0, 0, 0}; //last time
 const bool motorDirection = LOW; //you can use this to change the motor direction, comment out if you aren't using it.
+bool disableSteppers = HIGH; //status of the enable pin. disabled when HIGH. Gets enabled when the first note on message is received.
 
 MIDI_CREATE_DEFAULT_INSTANCE(); //use default MIDI settings
 
@@ -61,13 +63,13 @@ void setup()
   MIDI.begin(MIDI_CHANNEL_OMNI); //listen to all MIDI channels
   MIDI.setHandleNoteOn(handleNoteOn); //execute function when note on message is recieved
   MIDI.setHandleNoteOff(handleNoteOff); //execute function when note off message is recieved
-  Serial.begin(115200); //allows for serial MIDI communication
-  digitalWrite(enPin, LOW); //enable steppers
+  Serial.begin(115200); //allows for serial MIDI communication, comment out if using HIDUINO or LUFA
 }
 
 void loop() 
 {
   MIDI.read(); //read MIDI messages
+  digitalWrite(enPin, disableSteppers); //choose whether to enable or disable steppers.
   singleStep(1, stepPin_M1); //run each stepper at specified speed
   singleStep(2, stepPin_M2);
   singleStep(3, stepPin_M3);
@@ -76,6 +78,7 @@ void loop()
 
 void handleNoteOn(byte channel, byte pitch, byte velocity) //MIDI Note ON Command
 {
+  disableSteppers = LOW; //enable steppers. 
   motorSpeeds[channel] = pitchVals[pitch]; //set the motor speed to specified pitch
   /*
    * something that you could potentially do is have a grid of steppers
