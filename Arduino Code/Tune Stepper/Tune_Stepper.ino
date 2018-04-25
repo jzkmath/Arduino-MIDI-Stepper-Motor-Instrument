@@ -6,8 +6,11 @@
  * 
  * This program allows the user to input a speed value through the serial monitor 
  * and runs that motor at that speed.
- * Use an instrument tuner to figure out what speed value is correct and put it in
- * the pitches.h file
+ * You should compare the sound with the value on the pitches.h file
+ * and check for the resonant frequency of your stepper. 
+ * The resonant frequency will cause the motor to produce a garbled tone.
+ * It will appear as if the motor has stalled. If this happens, raise/lower the pitch value
+ * by an octave.
  */
 
 //ARDUINO PINS
