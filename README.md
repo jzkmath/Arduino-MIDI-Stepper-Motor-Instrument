@@ -1,6 +1,8 @@
 # Arduino-MIDI-Stepper-Motor-Instrument
 This is an Arduino Project that uses A4988 stepper drivers with bipolar stepper motors along with the MIDI library to create sound.
 
+Link to my Project on the Arduino Website [HERE](https://create.arduino.cc/projecthub/JonJonKayne/arduino-midi-stepper-synth-d291ae)
+
 # Hardware:
 - Any Arduino board (Uno, Mega, Micro, Mini, etc)
 - NEMA 17 Stepper Motor or similar
