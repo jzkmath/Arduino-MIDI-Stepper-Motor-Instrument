@@ -16,6 +16,8 @@ Make sure you have the [MIDI Arduino library](https://github.com/FortySevenEffec
 The Arduino code is designed so that it can expand to handle as many stepper motors as you need.
 I have put instructions on how to configure the code in the ino file.
 
+You might want to use the TuneStepper code to check for your motor's resonant frequency (which will sound bad). For me, the notes that were around the resonant frequency were E3, F3, and F#3.
+
 I have also put plenty of comments in the source code so that you can easily understand
 the code and what it does.
 
