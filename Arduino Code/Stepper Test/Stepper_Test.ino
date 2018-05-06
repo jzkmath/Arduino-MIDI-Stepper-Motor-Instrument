@@ -1,9 +1,19 @@
+/*
+Stepper Test
+By: Jonathan Kayne
+April 2018
+
+Use this code to make sure that your stepper motors are wired up
+properly to the A4988 drivers. 
+Pin are set up for the Arduino CNC Shield V3 (X-axis)
+so change them to match the correct wiring you use.
+*/
 #define stepPin 2
 #define dirPin 5
 #define enPin 8
-const int Time_1 = 5000;
+const int Time_1 = 5000; //duration between pulses
 const int Time_2 = 5000;
-const int step_1 = 200;
+const int step_1 = 200; //steps per revolution
 const int step_2 = 200;
 
 void setup() {
