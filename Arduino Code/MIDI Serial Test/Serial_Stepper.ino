@@ -1,5 +1,5 @@
 /*
- * TuneStepper
+ * Serial Stepper
  * 
  * By Jonathan Kayne
  * April 2018
