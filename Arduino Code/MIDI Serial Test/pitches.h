@@ -2,12 +2,14 @@
    pitches.h
    Made By Jonathan Kayne
    April 2018
-
    This is an array of MIDI pitches and their respective speed values.
    The index is the MIDI pitch value
    The value stored is the time value between pulses on the stepper motor that produce the desired tone.
-
    You can adjust these to tune your stepper motor.
+   Note that the duration is in microseconds, so 1 second = 1,000,000 microseconds.
+   Calculation:
+   pitchVal = 1000000/frequency
+   
 */
 
 const long pitchVals[] = {
