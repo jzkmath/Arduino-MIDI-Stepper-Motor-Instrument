@@ -3,6 +3,9 @@ This is an Arduino Project that uses A4988 stepper drivers with bipolar stepper 
 
 Link to my Project on the Arduino Website [HERE](https://create.arduino.cc/projecthub/JonJonKayne/arduino-midi-stepper-synth-d291ae)
 
+**UPDATE:** I am working on a new version of the MIDI Stepper Synth that uses an FPGA, Custom PCBs and 32 Stepper Motors. Link [HERE](https://github.com/jzkmath/MIDI-Stepper-Synth-V2)
+
+
 # Hardware:
 - Any Arduino board (Uno, Mega, Micro, Mini, etc)
 - NEMA 17 Stepper Motor or similar
