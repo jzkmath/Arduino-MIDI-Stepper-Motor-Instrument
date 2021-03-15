@@ -34,11 +34,14 @@
 
 #define enPin 8 //Steppers are enabled when EN pin is pulled LOW
 
+#define TIMEOUT 10000 //Number of milliseconds for watchdog timer
+
 //The index corresponds to the MIDI channel/Motor number being used. Index 0 is not used.
 unsigned long motorSpeeds[] = {0, 0, 0, 0, 0}; //holds the speeds of the motors. 
 unsigned long prevStepMicros[] = {0, 0, 0, 0, 0}; //last time
 const bool motorDirection = LOW; //you can use this to change the motor direction, comment out if you aren't using it.
 bool disableSteppers = HIGH; //status of the enable pin. disabled when HIGH. Gets enabled when the first note on message is received.
+unsigned long WDT; //Will store the time that the last event occured.
 
 MIDI_CREATE_DEFAULT_INSTANCE(); //use default MIDI settings
 
@@ -63,7 +66,7 @@ void setup()
   MIDI.begin(MIDI_CHANNEL_OMNI); //listen to all MIDI channels
   MIDI.setHandleNoteOn(handleNoteOn); //execute function when note on message is recieved
   MIDI.setHandleNoteOff(handleNoteOff); //execute function when note off message is recieved
-  Serial.begin(115200); //allows for serial MIDI communication, comment out if using HIDUINO or LUFA
+  //Serial.begin(115200); //allows for serial MIDI communication, comment out if using HIDUINO or LUFA
 }
 
 void loop() 
@@ -74,6 +77,11 @@ void loop()
   singleStep(2, stepPin_M2);
   singleStep(3, stepPin_M3);
   singleStep(4, stepPin_M4);
+
+  if (millis() - WDT >= TIMEOUT)
+  {
+    disableSteppers = HIGH; //When the time has elapsed, disable the steppers
+  }
 }
 
 void handleNoteOn(byte channel, byte pitch, byte velocity) //MIDI Note ON Command
@@ -98,8 +106,8 @@ void singleStep(byte motorNum, byte stepPin)
   if ((micros() - prevStepMicros[motorNum] >= motorSpeeds[motorNum]) && (motorSpeeds[motorNum] != 0)) 
   { //step when correct time has passed and the motor is at a nonzero speed
     prevStepMicros[motorNum] += motorSpeeds[motorNum];
+    WDT = millis(); //update watchdog timer
     digitalWrite(stepPin, HIGH);
     digitalWrite(stepPin, LOW);
   }
 }
-
